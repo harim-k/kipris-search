@@ -1,0 +1,18 @@
+spring:
+  servlet:
+    multipart:
+      maxFileSize: 100MB # 파일 하나의 최대 크기
+      maxRequestSize: 100MB
+  thymeleaf:
+    prefix: classpath:/static/
+    suffix: .html
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+server:
+  port: 8080 # 애플리케이션의 포트 설정
+
+

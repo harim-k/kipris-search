@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>kipris search</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+</head>
+
+<body style="margin-top: 30px;margin-left: 30px;">
+
+
+<h1>상표권 키워드 마킹</h1>
+<hr>
+
+
+<h2>1. 상표권 키워드 마킹</h2>
+
+<form enctype="multipart/form-data" method="post">
+
+    <input name="file" required="required" style="border: 1px solid black; padding: 5px;"
+           title="Upload excel file"
+           type="file">
+    <p></p>
+    <input formaction="/kipris/search" type="submit"
+           value="마킹">
+</form>
+
+<p></p>
+
+<h2>2. 엑셀 파일 다운로드</h2>
+<h3>진행중인 파일</h3>
+
+<ul>
+    <li th:each="fileName : ${inProgressFiles}">
+        <span th:text="${fileName}"></span>
+    </li>
+</ul>
+
+<h3>완료된 파일</h3>
+
+<ul>
+    <li th:each="fileName : ${completedFiles}">
+        <span th:text="${fileName}"></span>
+        <a download th:href="'/kipris/file/download/' + ${fileName}">
+            <button>다운로드</button>
+        </a>
+    </li>
+</ul>
+<p></p>
+
+<h2>3. 엑셀 파일 전체 삭제</h2>
+<form method="post">
+    <input formaction="/kipris/file/all" type="submit" value="삭제">
+</form>
+
+<hr>
+
+<h2>4. 키프리스 api key 변경</h2>
+<span>현재 API key :
+    <span th:text="${apiKey}">현재 API key</span>
+</span>
+<form method="post">
+    <input name="apiKey" placeholder="키프리스 api key" type="text">
+    <input formaction="/kipris/apiKey" type="submit" value="변경">
+</form>
+
+
+<hr>
+
+
+<h2><a href="index.html">메인으로 돌아가기</a></h2>
+
+</body>
+
+</html>
+
+
+
+

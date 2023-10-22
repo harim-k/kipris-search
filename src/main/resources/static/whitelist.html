@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>kipris search</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>화이트리스트 키워드</h1>
+
+<h2>1. 화이트리스트 키워드</h2>
+
+<span th:each="keyword, iterStat : ${whitelist}">
+    <span th:text="${keyword}"></span>
+    <span th:unless="${iterStat.last}">, </span>
+</span>
+
+<p></p>
+
+<h2>2. 화이트리스트 키워드 등록</h2>
+<h3>2-1 단건 등록</h3>
+<form method="post">
+    <input type="text" name="keyword" placeholder="키워드 입력">
+    <input formaction="/whitelist/add" type="submit" value="단건 등록">
+</form>
+<h3>2-1 txt 파일 등록</h3>
+<form enctype="multipart/form-data" method="post">
+    <input name="file" required="required" style="border: 1px solid black; padding: 5px;"
+           title="키워드 txt 파일 업로드"
+           type="file">
+    <input formaction="/whitelist/upload" type="submit" value="파일 등록">
+</form>
+<p></p>
+
+
+<h2>3. 화이트리스트 키워드 txt 파일 다운로드</h2>
+
+<form method="post">
+    <input formaction="/whitelist/download" type="submit" value="파일 다운로드">
+</form>
+
+<p></p>
+
+<h2>4. 화이트리스트 키워드 전체 삭제</h2>
+<form method="post">
+    <input formaction="/whitelist/all" type="submit" value="전체 삭제">
+</form>
+
+<p></p>
+
+<hr>
+
+<h2><a href="index.html">메인으로 돌아가기</a></h2>
+
+</body>
+</html>
